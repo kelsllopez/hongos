@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  /* Paleta "bosque / micología" */
+  --spore-cream: #f4efe2;
+  --bone: #fdfbf4;
+  --moss-dark: #364a35;
+  --moss: #4f6b4a;
+  --humus: #5c4632;
+  --terracotta: #b5562f;
+  --amanita: #b8392a;
+  --ink: #2b2620;
+
+  --background: var(--spore-cream);
+  --foreground: var(--ink);
+}
+
+/* Paleta de modo oscuro: mismo "carácter" de bosque, pero de noche.
+   Como casi todo el sitio usa estas variables directamente (no clases
+   dark: de Tailwind), redefinirlas aquí basta para que todo el sitio
+   cambie de tema sin tocar cada componente. */
+html.dark {
+  --spore-cream: #232019;
+  --bone: #2b2620;
+  --moss-dark: #a8c2a0;
+  --moss: #8aab83;
+  --humus: #d6c4ab;
+  --terracotta: #e08a5c;
+  --amanita: #e2685a;
+  --ink: #f1ece1;
+
+  --background: var(--spore-cream);
+  --foreground: var(--ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Manrope", -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), serif;
+}
+
+/* Textura sutil de "papel de bosque" */
+.paper-texture {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(54, 74, 53, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(181, 86, 47, 0.05) 0%, transparent 45%);
+}
+
+.canvas-grid {
+  background-image:
+    linear-gradient(rgba(54, 74, 53, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(54, 74, 53, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+::selection {
+  background: var(--terracotta);
+  color: var(--bone);
+}
+
+/* Scrollbar discreto */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(54, 74, 53, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(54, 74, 53, 0.4);
+}
+
+@keyframes spore-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.5; }
+  100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+}
